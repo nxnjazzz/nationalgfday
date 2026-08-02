@@ -1,57 +1,67 @@
-// ----------------------
-// Typewriter Title
-// ----------------------
+// ---------------------------
+// Loading Screen
+// ---------------------------
 
-const titleText = "Happy National Girlfriend Day ❤️";
-const title = document.getElementById("title");
+window.addEventListener("load", () => {
 
-let i = 0;
+    setTimeout(() => {
 
-function typeWriter() {
+        document.getElementById("loading").style.opacity = "0";
 
-    if (i < titleText.length) {
-        title.innerHTML += titleText.charAt(i);
-        i++;
-        setTimeout(typeWriter, 70);
-    }
+        setTimeout(() => {
 
-}
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("intro").classList.remove("hidden");
 
-// ----------------------
+        }, 800);
+
+    }, 1800);
+
+});
+
+// ---------------------------
+// Elements
+// ---------------------------
+
+const envelope = document.getElementById("envelope");
+const intro = document.getElementById("intro");
+const main = document.getElementById("mainPage");
+
+const music = document.getElementById("music");
+const record = document.getElementById("record");
+const musicButton = document.getElementById("musicButton");
+
+const overlay = document.getElementById("letterOverlay");
+const typedLetter = document.getElementById("typedLetter");
+
+// ---------------------------
 // Envelope
-// ----------------------
+// ---------------------------
 
-function openEnvelope() {
-
-    const envelope = document.querySelector(".envelope");
+function openEnvelope(){
 
     envelope.classList.add("open");
 
     setTimeout(() => {
 
-        document.getElementById("intro").style.display = "none";
+        intro.style.display = "none";
+        main.style.display = "block";
 
-        document.getElementById("mainContent").style.display = "block";
+        typeTitle();
 
-        typeWriter();
+        music.play().catch(()=>{});
 
-        // Automatically play music after opening
-        music.play().catch(() => {});
-
-        record.classList.remove("paused");
         record.classList.add("spin");
 
-    }, 1400);
+        musicButton.innerHTML = "⏸ Pause";
+
+    },1600);
 
 }
 
-// ----------------------
-// Music Player
-// ----------------------
-
-const music = document.getElementById("music");
-const record = document.getElementById("record");
-const musicBtn = document.getElementById("musicBtn");
+// ---------------------------
+// Music
+// ---------------------------
 
 function toggleMusic(){
 
@@ -59,73 +69,145 @@ function toggleMusic(){
 
         music.play();
 
-        record.classList.remove("paused");
         record.classList.add("spin");
 
-        musicBtn.innerHTML = "⏸ Pause Music";
+        musicButton.innerHTML="⏸ Pause";
 
-    }else{
+    }
+
+    else{
 
         music.pause();
 
         record.classList.remove("spin");
-        record.classList.add("paused");
 
-        musicBtn.innerHTML = "▶ Play Music";
+        musicButton.innerHTML="▶ Play";
 
     }
 
 }
 
-// ----------------------
+// ---------------------------
+// Animated Title
+// ---------------------------
+
+const titleText="Happy National Girlfriend Day ❤️";
+
+let titleIndex=0;
+
+function typeTitle(){
+
+    const title=document.getElementById("title");
+
+    title.innerHTML="";
+
+    titleIndex=0;
+
+    function type(){
+
+        if(titleIndex<titleText.length){
+
+            title.innerHTML+=titleText.charAt(titleIndex);
+
+            titleIndex++;
+
+            setTimeout(type,55);
+
+        }
+
+    }
+
+    type();
+
+}
+
+// ---------------------------
 // Love Letter
-// ----------------------
+// ---------------------------
+
+const message=`Happy National Girlfriend Day ❤️
+
+Thank you for always making me smile.
+
+Every memory with you is my favorite memory.
+
+You make my days brighter, my heart happier, and my life so much better.
+
+I hope this little website reminds you just how much I love you.
+
+Forever yours. ❤️`;
 
 function showLetter(){
 
-    document.getElementById("letterPopup").style.display="flex";
+    overlay.style.display="flex";
+
+    typedLetter.innerHTML="";
+
+    let i=0;
+
+    function type(){
+
+        if(i<message.length){
+
+            typedLetter.innerHTML+=message.charAt(i);
+
+            i++;
+
+            setTimeout(type,28);
+
+        }
+
+    }
+
+    type();
 
 }
 
 function closeLetter(){
 
-    document.getElementById("letterPopup").style.display="none";
+    overlay.style.display="none";
 
 }
 
-// Close when clicking outside
+overlay.addEventListener("click",(e)=>{
 
-window.onclick=function(e){
+    if(e.target===overlay){
 
-    const popup=document.getElementById("letterPopup");
-
-    if(e.target===popup){
-
-        popup.style.display="none";
+        closeLetter();
 
     }
 
-}
+});
 
-// ----------------------
+// ---------------------------
 // Floating Hearts
-// ----------------------
+// ---------------------------
 
-function makeHeart(){
+function createHeart(){
 
     const heart=document.createElement("div");
 
     heart.className="heart";
 
-    const emojis=["💖","💕","💗","💓","🌸","✨"];
+    const icons=[
+        "💖",
+        "💕",
+        "💗",
+        "💓",
+        "🌸",
+        "✨"
+    ];
 
-    heart.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+    heart.innerHTML=
+    icons[Math.floor(Math.random()*icons.length)];
 
     heart.style.left=Math.random()*100+"vw";
 
-    heart.style.fontSize=(18+Math.random()*20)+"px";
+    heart.style.fontSize=
+    (18+Math.random()*20)+"px";
 
-    heart.style.animationDuration=(5+Math.random()*6)+"s";
+    heart.style.animationDuration=
+    (5+Math.random()*5)+"s";
 
     document.getElementById("hearts").appendChild(heart);
 
@@ -133,48 +215,44 @@ function makeHeart(){
 
         heart.remove();
 
-    },11000);
+    },10000);
 
 }
 
-setInterval(makeHeart,450);
+setInterval(createHeart,350);
 
-// ----------------------
+// ---------------------------
 // Click Heart Explosion
-// ----------------------
+// ---------------------------
 
 document.addEventListener("click",(e)=>{
 
-    if(e.target.closest(".envelope")) return;
+    if(e.target.closest(".seal")) return;
 
-    for(let i=0;i<15;i++){
+    if(e.target.closest(".close")) return;
+
+    for(let i=0;i<14;i++){
 
         const h=document.createElement("div");
 
         h.innerHTML="💖";
 
         h.style.position="fixed";
-
         h.style.left=e.clientX+"px";
-
         h.style.top=e.clientY+"px";
-
+        h.style.fontSize=(16+Math.random()*14)+"px";
         h.style.pointerEvents="none";
-
-        h.style.fontSize=(18+Math.random()*18)+"px";
-
-        h.style.transition="all 1s ease";
-
-        h.style.zIndex="9999";
+        h.style.transition="1s";
+        h.style.zIndex="999";
 
         document.body.appendChild(h);
 
-        const x=(Math.random()-0.5)*220;
-        const y=(Math.random()-0.5)*220;
+        const x=(Math.random()-0.5)*180;
+        const y=(Math.random()-0.5)*180;
 
         requestAnimationFrame(()=>{
 
-            h.style.transform=`translate(${x}px,${y}px) scale(1.8)`;
+            h.style.transform=`translate(${x}px,${y}px) scale(1.6)`;
 
             h.style.opacity="0";
 
@@ -190,51 +268,16 @@ document.addEventListener("click",(e)=>{
 
 });
 
-// ----------------------
-// Sparkles
-// ----------------------
+// ---------------------------
+// Keyboard Shortcut
+// ---------------------------
 
-for(let i=0;i<70;i++){
+document.addEventListener("keydown",(e)=>{
 
-    const star=document.createElement("div");
+    if(e.key==="Escape"){
 
-    star.style.position="fixed";
-    star.style.width="3px";
-    star.style.height="3px";
-    star.style.borderRadius="50%";
-    star.style.background="white";
-    star.style.boxShadow="0 0 10px hotpink";
-    star.style.opacity=Math.random();
+        closeLetter();
 
-    star.style.left=Math.random()*100+"vw";
-    star.style.top=Math.random()*100+"vh";
+    }
 
-    star.style.animation=`twinkle ${2+Math.random()*4}s infinite`;
-
-    document.body.appendChild(star);
-
-}
-
-// ----------------------
-// Twinkle Animation
-// ----------------------
-
-const style=document.createElement("style");
-
-style.innerHTML=`
-
-@keyframes twinkle{
-
-0%,100%{
-opacity:.2;
-}
-
-50%{
-opacity:1;
-}
-
-}
-
-`;
-
-document.head.appendChild(style);
+});
