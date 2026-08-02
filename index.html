@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy National Girlfriend Day ❤️</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="hearts"></div>
+
+<!-- Envelope Screen -->
+<div id="intro">
+
+  <div class="envelope" onclick="openEnvelope()">
+
+    <div class="back"></div>
+
+    <div class="letter">
+
+      <h2>To My Beautiful Girlfriend ❤️</h2>
+
+      <p>Tap to open your surprise...</p>
+
+    </div>
+
+    <div class="front"></div>
+
+    <div class="top"></div>
+
+  </div>
+
+</div>
+
+<!-- Main Website -->
+<div id="mainContent">
+
+<h1 id="title"></h1>
+
+<p class="subtitle">
+Happy National Girlfriend Day 💕
+</p>
+
+<div class="musicPlayer">
+
+<img
+src="disc-spinning.gif"
+id="record"
+class="paused"
+alt="Record">
+
+<div>
+
+<button id="musicBtn" onclick="toggleMusic()">
+
+▶ Play Music
+
+</button>
+
+<p class="nowPlaying">
+
+Now Playing
+
+</p>
+
+</div>
+
+</div>
+
+<audio id="music" loop>
+
+<source src="music.mp3" type="audio/mpeg">
+
+</audio>
+
+<div class="photoContainer">
+
+<img src="collage.png" class="collage">
+
+</div>
+
+<button class="letterBtn" onclick="showLetter()">
+
+💌 Read My Letter
+
+</button>
+
+<div id="letterPopup">
+
+<div class="letterCard">
+
+<span class="close" onclick="closeLetter()">&times;</span>
+
+<h2>My Love ❤️</h2>
+
+<p>
+
+Happy National Girlfriend Day.
+
+Thank you for always making me smile,
+for every hug,
+every laugh,
+every memory,
+and every moment we share.
+
+Life is so much brighter because you're in it.
+
+I hope we continue making countless memories together.
+
+I love you endlessly.
+
+❤️
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
