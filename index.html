@@ -1,127 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy National Girlfriend Day ❤️</title>
 
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Happy National Girlfriend Day ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
+<!-- Hearts -->
+
 <div id="hearts"></div>
 
-<!-- Envelope Screen -->
-<div id="intro">
+<!-- Sparkles -->
 
-  <div class="envelope" onclick="openEnvelope()">
+<div id="sparkles"></div>
 
-    <div class="back"></div>
+<!-- Loading -->
 
-    <div class="letter">
+<div id="loading">
 
-      <h2>To My Beautiful Girlfriend ❤️</h2>
+<h2>Preparing your surprise...</h2>
 
-      <p>Tap to open your surprise...</p>
-
-    </div>
-
-    <div class="front"></div>
-
-    <div class="top"></div>
-
-  </div>
+<div class="loaderHeart">💖</div>
 
 </div>
 
-<!-- Main Website -->
-<div id="mainContent">
+<!-- Envelope Screen -->
+
+<section id="intro" class="hidden">
+
+<div class="envelopeContainer">
+
+<div class="envelope" id="envelope">
+
+<div class="envelopeBack"></div>
+
+<div class="letter">
+
+<h2>To My Beautiful Girlfriend ❤️</h2>
+
+<p>Open me 💌</p>
+
+</div>
+
+<div class="envelopeFront"></div>
+
+<div class="flap"></div>
+
+<div class="seal" onclick="openEnvelope()">
+
+❤️
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Main -->
+
+<main id="mainPage">
+
+<header>
 
 <h1 id="title"></h1>
 
 <p class="subtitle">
-Happy National Girlfriend Day 💕
+
+Happy National Girlfriend Day
+
 </p>
 
-<div class="musicPlayer">
+</header>
+
+<section class="musicSection">
+
+<div class="recordPlayer">
 
 <img
-src="disc-spinning.gif"
+src="images/vinyl.gif"
 id="record"
-class="paused"
-alt="Record">
-
-<div>
-
-<button id="musicBtn" onclick="toggleMusic()">
-
-▶ Play Music
-
-</button>
-
-<p class="nowPlaying">
-
-Now Playing
-
-</p>
+alt="vinyl">
 
 </div>
+
+<div class="controls">
+
+<h3>Now Playing</h3>
+
+<p>Your Song ❤️</p>
+
+<button id="musicButton" onclick="toggleMusic()">
+
+▶ Play
+
+</button>
 
 </div>
 
 <audio id="music" loop>
 
-<source src="music.mp3" type="audio/mpeg">
+<source src="music/song.mp3" type="audio/mpeg">
 
 </audio>
 
-<div class="photoContainer">
+</section>
 
-<img src="collage.png" class="collage">
+<section class="gallery">
 
-</div>
+<img
+src="images/collage.png"
+class="collage"
+alt="Our Memories">
 
-<button class="letterBtn" onclick="showLetter()">
+</section>
+
+<section class="buttons">
+
+<button onclick="showLetter()">
 
 💌 Read My Letter
 
 </button>
 
-<div id="letterPopup">
+</section>
+
+<!-- Letter -->
+
+<div id="letterOverlay">
 
 <div class="letterCard">
 
-<span class="close" onclick="closeLetter()">&times;</span>
+<span class="close" onclick="closeLetter()">
+
+×
+
+</span>
 
 <h2>My Love ❤️</h2>
 
+<div id="typedLetter"></div>
+
+</div>
+
+</div>
+
+<footer>
+
 <p>
 
-Happy National Girlfriend Day.
-
-Thank you for always making me smile,
-for every hug,
-every laugh,
-every memory,
-and every moment we share.
-
-Life is so much brighter because you're in it.
-
-I hope we continue making countless memories together.
-
-I love you endlessly.
-
-❤️
+Made with ❤️ just for you.
 
 </p>
 
-</div>
+</footer>
 
-</div>
-
-</div>
+</main>
 
 <script src="script.js"></script>
 
